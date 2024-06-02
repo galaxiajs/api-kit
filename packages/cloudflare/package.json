@@ -1,0 +1,101 @@
+{
+	"name": "@pulsar/cloudflare",
+	"type": "module",
+	"version": "0.0.1",
+	"description": "Utilities to make working with Cloudflare workers easier",
+	"author": "Ernest Nkansah-Badu <ernestjbadu@outlook.com> (https://github.com/Ernxst)",
+	"license": "MIT",
+	"homepage": "https://github.com/Ernxst/pulsar",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Ernxst/pulsar.git",
+		"directory": "packages/cloudflare"
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./cache": {
+			"types": "./dist/cache/index.d.ts",
+			"default": "./dist/cache/index.js"
+		},
+		"./cookies": {
+			"types": "./dist/cookies/index.d.ts",
+			"default": "./dist/cookies/index.js"
+		},
+		"./user-agent": {
+			"types": "./dist/user-agent/index.d.ts",
+			"default": "./dist/user-agent/index.js"
+		},
+		"./esbuild": {
+			"types": "./dist/esbuild/index.d.ts",
+			"default": "./dist/esbuild/index.js"
+		}
+	},
+	"files": ["dist", "package.json"],
+	"typesVersions": {
+		"*": {
+			".": ["./dist/index"],
+			"esbuild": ["./dist/esbuild/index"],
+			"cache": ["./dist/cache/index"],
+			"cookies": ["./dist/cookies/index"],
+			"user-agent": ["./dist/user-agent/index"],
+			"types": ["./dist/index"]
+		}
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org"
+	},
+	"workspaces": ["examples/**/*"],
+	"keywords": [
+		"pulsar",
+		"web",
+		"app",
+		"http",
+		"application",
+		"framework",
+		"router",
+		"cloudflare",
+		"workers",
+		"deno",
+		"bun",
+		"nodejs"
+	],
+	"scripts": {
+		"-------------------------------------------------------------------------------": "",
+		"dev": "tsup --watch",
+		"build": "tsup",
+		"postbuild": "publint",
+		"typecheck": "tsc --noEmit",
+		"---------------------------------------------------------------------------------": "",
+		"test": "vitest run",
+		"test:watch": "vitest --watch",
+		"coverage": "vitest run --coverage"
+	},
+	"dependencies": {
+		"oslo": "1.2.0",
+		"pretty-cache-header": "1.0.0",
+		"set-cookie-parser": "2.6.0",
+		"ua-parser-js": "1.0.38"
+	},
+	"peerDependencies": {
+		"@cloudflare/workers-types": "^4.20240512.0"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240512.0",
+		"@cloudflare/vitest-pool-workers": "0.4.0",
+		"@types/node": "^20.13.0",
+		"@types/set-cookie-parser": "2.4.7",
+		"@types/ua-parser-js": "0.7.39",
+		"@vitest/coverage-istanbul": "1.5.0",
+		"publint": "^0.2.8",
+		"tsup": "^8.0.2",
+		"typescript": "^5.4.5",
+		"vitest": "1.5.0",
+		"vite-tsconfig-paths": "^4.3.2"
+	}
+}

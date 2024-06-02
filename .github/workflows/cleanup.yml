@@ -1,0 +1,42 @@
+name: Remove SST app
+on: delete
+jobs:
+  delete:
+    if: github.event.ref_type == 'branch' && github.event.ref != 'refs/head/main' && github.event.ref != 'refs/head/dev'
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📤 Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: 📤 Install dependencies
+        run: bun install
+
+      # peg the version
+      - name: 📤 Install SST
+        run: |
+          wget https://github.com/sst/ion/releases/download/v0.0.298/sst-linux-amd64.deb
+          sudo dpkg -i sst-linux-amd64.deb
+          sst version
+
+      - name: ⬇️ Install SST providers
+        run: sst install
+
+      - name: 🎙 Set Stage
+        id: set_stage
+        run: |
+          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')
+          echo "stage=$BRANCH_NAME" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_REF: ${{ github.event.ref }}
+
+      - name: 🧹 Clean up ${{ steps.set_stage.outputs.stage }}
+        run: stt remove --stage ${{ steps.set_stage.outputs.stage }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_DEFAULT_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_DEFAULT_ACCOUNT_ID }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          TURSO_API_TOKEN: ${{ secrets.TURSO_API_TOKEN }}

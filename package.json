@@ -1,0 +1,34 @@
+{
+	"name": "root",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"workspaces": ["packages/**/*", "examples/**/*"],
+	"scripts": {
+		"-------------------------------------------------------------------------------": "",
+		"dev": "turbo run dev --filter='./packages/*'",
+		"build": "turbo run build --filter='./packages/*'",
+		"--------------------------------------------------------------------------------": "",
+		"lint": "biome lint .",
+		"lint:fix": "biome check . --apply",
+		"check": "biome check .",
+		"format": "biome format . --write",
+		"typecheck": "turbo run typecheck",
+		"---------------------------------------------------------------------------------": "",
+		"test": "turbo run test",
+		"test:watch": "turbo run test:watch",
+		"coverage": "turbo run coverage"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.7.3",
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
+		"lefthook": "^1.6.14",
+		"turbo": "^1.13.3"
+	},
+	"packageManager": "bun@1.10.0",
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"trustedDependencies": ["@biomejs/biome", "esbuild", "lefthook", "workerd"]
+}

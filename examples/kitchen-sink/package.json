@@ -1,0 +1,37 @@
+{
+	"name": "@examples/kitchen-sink",
+	"type": "module",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"--------------------------------------------------------------------------------": "",
+		"dev": "wrangler dev",
+		"build": "bun run build.ts",
+		"---------------------------------------------------------------------------------": "",
+		"db": "drizzle-kit",
+		"db:seed": "bun run db/seeds/seed.ts"
+	},
+	"dependencies": {
+		"@pulsar/cloudflare": "workspace:*",
+		"@hono/zod-validator": "0.2.2",
+		"@libsql/client": "0.6.2",
+		"@lucia-auth/adapter-drizzle": "1.0.7",
+		"@paralleldrive/cuid2": "2.2.2",
+		"arctic": "1.9.0",
+		"drizzle-orm": "0.31.0",
+		"hono": "4.4.2",
+		"lucia": "3.2.0",
+		"oslo": "1.2.0",
+		"toucan-js": "3.4.0",
+		"zod": "3.23.8"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240512.0",
+		"@types/node": "^20.13.0",
+		"dotenv": "16.4.5",
+		"drizzle-kit": "^0.22.1",
+		"esbuild": "^0.21.4",
+		"typescript": "^5.0.0",
+		"wrangler": "^3.57.1"
+	}
+}

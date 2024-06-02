@@ -1,0 +1,67 @@
+name: 🚀 CI
+
+on:
+  workflow_dispatch:
+  push:
+  merge_group:
+  pull_request:
+    paths-ignore:
+      - ".vscode/**"
+      - "**/*.md"
+      - ".github/ISSUE_TEMPLATE/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: ⬣ Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🛠 Setup Biome CLI
+        uses: biomejs/setup-biome@v2
+
+      - name: 🔬 Run Biome
+        run: biome ci .
+
+  typecheck:
+    name: ʦ Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 📤 Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: 📤 Install dependencies
+        run: bun install
+      - name: 🔎 Typecheck
+        run: bun typecheck --continue
+
+  test:
+    name: "🧪 Test"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 📤 Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: 📤 Install dependencies
+        run: bun install
+
+      - name: 🧪 Run Tests
+        run: bun run test --continue

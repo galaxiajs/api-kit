@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  pulsar:
+    build: .
+    container_name: pulsar
+    volumes:
+      - ../:/pulsar
+    networks:
+      - pulsar
+    command: bash
+    stdin_open: true
+    tty: true
+    restart: 'no'
+
+networks:
+  pulsar:
+    driver: bridge

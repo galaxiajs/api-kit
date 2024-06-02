@@ -1,0 +1,8 @@
+DatabaseUrl=[replace me]
+DatabaseSecret=[replace me]
+SentryDsn=[replace me]
+GitHubClientId=[replace me]
+GitHubClientSecret=[replace me]
+GoogleClientId=[replace me]
+GoogleClientSecret=[replace me]
+WebAppUrl=[replace me]

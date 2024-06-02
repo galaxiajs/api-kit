@@ -1,0 +1,16 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"outDir": "./dist",
+		"rootDir": ".",
+		"declarationDir": "./dist",
+		"types": [
+			"@cloudflare/workers-types",
+			"@types/node",
+			"@cloudflare/vitest-pool-workers"
+		]
+	},
+	"include": ["src", "tsup.config.ts", "vitest.config.ts"],
+	"exclude": ["./dist", "node_modules"]
+}

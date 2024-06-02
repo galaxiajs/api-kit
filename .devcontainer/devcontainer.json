@@ -1,0 +1,7 @@
+{
+	"name": "Pulsar Dev",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"mounts": ["source=pulsar-bashhistory,target=/commandhistory,type=volume"]
+}
