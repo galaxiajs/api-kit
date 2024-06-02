@@ -19,7 +19,7 @@
 			"persistent": true
 		},
 		"coverage": {
-			"dependsOn": ["^test"],
+			"dependsOn": ["^coverage"],
 			"outputs": ["coverage/**"]
 		}
 	}
