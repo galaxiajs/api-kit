@@ -17,10 +17,16 @@
 		"---------------------------------------------------------------------------------": "",
 		"test": "turbo run test",
 		"test:watch": "turbo run test:watch",
-		"coverage": "turbo run coverage"
+		"coverage": "turbo run coverage",
+		"----------------------------------------------------------------------------------": "",
+		"prepublishOnly": "bun run build",
+		"release": "bun run build && changeset publish",
+		"version": "changeset version && bun install && bun run format"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.7.3",
+		"@changesets/changelog-github": "^0.5.0",
+		"@changesets/cli": "^2.27.5",
 		"@commitlint/cli": "^19.3.0",
 		"@commitlint/config-conventional": "^19.2.2",
 		"lefthook": "^1.6.14",
