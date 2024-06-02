@@ -132,7 +132,7 @@ This project has a simple structure,
 
 ## Releases
 
-_Note: Only [core maintainers (L3+)](https://github.com/Ernxst/pulsar/blob/main/GOVERNANCE.md#level-3-l3---core-maintainer) can release new versions of `pulsar`._
+_Note: Only [core maintainers (L3+)](https://github.com/galaxiajs/pulsar/blob/main/GOVERNANCE.md#level-3-l3---core-maintainer) can release new versions of `pulsar`._
 
 The repo is set up with automatic releases, using the changeset GitHub action & bot.
 
@@ -198,7 +198,7 @@ When in prerelease mode, the automatic PR release process will no longer release
 7. Run `bunx release` to publish your new release.
 8. Run `git push && git push --tags` to push your new release to GitHub.
 9. Run `git push release/0.X:latest` to push your release branch to `latest`.
-10. Go to <https://github.com/Ernxst/pulsar/releases/new> and create a new release. Copy the new changelog entry from <https://github.com/Ernxst/pulsar/blob/latest/CHANGELOG.md>.
+10. Go to <https://github.com/galaxiajs/pulsar/releases/new> and create a new release. Copy the new changelog entry from <https://github.com/galaxiajs/pulsar/blob/latest/CHANGELOG.md>.
 11. Post in Discord #announcements channel, if needed!
 
 ## Documentation
