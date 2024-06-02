@@ -1,4 +1,4 @@
-import pulsar from "@pulsar/cloudflare/esbuild";
+import pulsar from "@galaxiajs/cloudflare-kit/esbuild";
 import { build } from "esbuild";
 
 await build({

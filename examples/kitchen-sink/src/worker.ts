@@ -1,4 +1,3 @@
-import type { Client } from "@libsql/client";
 import {
 	cloudflare,
 	env,
@@ -6,7 +5,8 @@ import {
 	inject,
 	locals,
 	request,
-} from "@pulsar/cloudflare";
+} from "@galaxiajs/cloudflare-kit";
+import type { Client } from "@libsql/client";
 import { ExtraErrorData, RewriteFrames } from "@sentry/integrations";
 import { type AppDatabase, createConnection } from "db/client";
 import { RecordNotFoundError, UniqueConstraintFailed } from "db/utils/exceptions";
@@ -21,7 +21,7 @@ import { oauthRoutes } from "./routes/oauth.route";
 import { usersRoutes } from "./routes/users.route";
 import { dev, preview } from "./utils/context";
 
-declare module "@pulsar/cloudflare" {
+declare module "@galaxiajs/cloudflare-kit" {
 	interface Secrets {
 		DatabaseUrl: string;
 		DatabaseSecret: string;

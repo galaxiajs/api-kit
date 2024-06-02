@@ -12,7 +12,7 @@
 		"db:seed": "bun run db/seeds/seed.ts"
 	},
 	"dependencies": {
-		"@pulsar/cloudflare": "workspace:*",
+		"@galaxiajs/cloudflare-kit": "workspace:*",
 		"@hono/zod-validator": "0.2.2",
 		"@libsql/client": "0.6.2",
 		"@lucia-auth/adapter-drizzle": "1.0.7",

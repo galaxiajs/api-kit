@@ -1,6 +1,6 @@
-import { env } from "@pulsar/cloudflare";
-import { bindings, locals, waitUntil } from "@pulsar/cloudflare";
-import { cookies } from "@pulsar/cloudflare/cookies";
+import { env } from "@galaxiajs/cloudflare-kit";
+import { bindings, locals, waitUntil } from "@galaxiajs/cloudflare-kit";
+import { cookies } from "@galaxiajs/cloudflare-kit/cookies";
 import { generateCodeVerifier, generateState } from "arctic";
 import { OAuth as OAuthRepository } from "db/models/oauth/repository";
 import { OAuth } from "db/models/oauth/schemas";

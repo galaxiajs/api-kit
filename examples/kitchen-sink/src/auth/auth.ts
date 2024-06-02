@@ -1,6 +1,6 @@
+import { locals } from "@galaxiajs/cloudflare-kit";
+import { cookies } from "@galaxiajs/cloudflare-kit/cookies";
 import { DrizzleSQLiteAdapter } from "@lucia-auth/adapter-drizzle";
-import { locals } from "@pulsar/cloudflare";
-import { cookies } from "@pulsar/cloudflare/cookies";
 import { Session } from "db/models/session";
 import { session as dbSession } from "db/models/session/session.sql";
 import { User } from "db/models/user/schemas";

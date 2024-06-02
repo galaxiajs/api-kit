@@ -1,4 +1,4 @@
-import { headers } from "@pulsar/cloudflare";
+import { headers } from "@galaxiajs/cloudflare-kit";
 
 /**
  * @returns `true` when running vite dev

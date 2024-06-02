@@ -1,5 +1,5 @@
-import { searchParams } from "@pulsar/cloudflare";
-import { cookies } from "@pulsar/cloudflare/cookies";
+import { searchParams } from "@galaxiajs/cloudflare-kit";
+import { cookies } from "@galaxiajs/cloudflare-kit/cookies";
 import type { Tokens } from "arctic";
 import { InvalidCallbackStateError, OAuthError } from "./exceptions";
 import type { BaseProvider } from "./types";

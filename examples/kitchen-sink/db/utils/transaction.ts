@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import { locals } from "@pulsar/cloudflare";
+import { locals } from "@galaxiajs/cloudflare-kit";
 import type { AppDatabase } from "db/client";
 import type { AppSchema } from "db/schema";
 import type { ExtractTablesWithRelations } from "drizzle-orm";

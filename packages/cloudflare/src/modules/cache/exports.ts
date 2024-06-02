@@ -5,8 +5,8 @@
  *
  * @example
  * ```ts
- * import { cloudflare } from '@pulsar/cloudflare';
- * import { cached, revalidateTag } from '@pulsar/cloudflare/cache';
+ * import { cloudflare } from '@galaxiajs/cloudflare-kit';
+ * import { cached, revalidateTag } from '@galaxiajs/cloudflare-kit/cache';
  *
  * const getCachedUsers = cached(async () => [], ['users'], { tags: ['users'] })
  * export default cloudflare({

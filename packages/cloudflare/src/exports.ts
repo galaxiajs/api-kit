@@ -5,7 +5,7 @@
  *
  * @example
  * ```ts
- * import { cloudflare } from '@pulsar/cloudflare';
+ * import { cloudflare } from '@galaxiajs/cloudflare-kit';
  *
  * export default cloudflare({
  *   fetch(request) {

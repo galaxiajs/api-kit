@@ -1,4 +1,4 @@
-import { url, env } from "@pulsar/cloudflare";
+import { url, env } from "@galaxiajs/cloudflare-kit";
 import { GitHub } from "./github";
 import { Google } from "./google";
 
