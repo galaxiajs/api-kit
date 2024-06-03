@@ -85,6 +85,11 @@
 	"peerDependencies": {
 		"@cloudflare/workers-types": "^4.20240405.0"
 	},
+	"peerDependenciesMeta": {
+		"@cloudflare/workers-types": {
+			"optional": true
+		}
+	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20240512.0",
 		"@cloudflare/vitest-pool-workers": "0.4.0",
