@@ -9,7 +9,7 @@ const EXTERNAL = new Set([
 
 export default function pulsar(): Plugin {
 	return {
-		name: "esbuild-plugin-pulsar",
+		name: "esbuild-plugin-api-kit",
 		async setup(build) {
 			const options = build.initialOptions;
 			options.external ??= [];

@@ -14,7 +14,7 @@ export type TrackedCache = Awaited<ReturnType<typeof trackedCache>>;
  */
 export async function trackedCache(name: string) {
 	const { origin } = url();
-	const KEY = new URL("/__pulsar/__keys", origin);
+	const KEY = new URL("/__api-kit/__keys", origin);
 
 	/** Cache for tracking keys */
 	const keysCache = await caches.open(`${name}:keys`);

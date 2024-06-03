@@ -35,7 +35,7 @@ export class Google extends GoogleAuth implements BaseProvider<GoogleAuth> {
 		const data = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
-				"User-Agent": "pulsar-app",
+				"User-Agent": "api-kit-app",
 			},
 		}).then((res) => res.json());
 

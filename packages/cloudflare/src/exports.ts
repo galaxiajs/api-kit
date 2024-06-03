@@ -1,7 +1,7 @@
 /**
  * @module
  *
- * Pulsar - Web Framework built on Web Standards
+ * Api-Kit - Web Framework built on Web Standards
  *
  * @example
  * ```ts
@@ -9,12 +9,13 @@
  *
  * export default cloudflare({
  *   fetch(request) {
- *     return Response.json({ message: 'Pulsar!' })
+ *     return Response.json({ message: 'Api-Kit!' })
  * 	 }
  * })
  * ```
  */
 
+export { createResponse } from "./create-response";
 export { cloudflare } from "./handler";
 export { inject } from "./inject";
 export {
@@ -50,4 +51,3 @@ export type {
 	MakeAsync,
 	Resource,
 } from "./types";
-export { createResponse } from "./create-response";

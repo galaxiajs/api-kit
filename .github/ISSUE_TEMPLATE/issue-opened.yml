@@ -8,7 +8,7 @@ on:
 jobs:
   label_issues:
     runs-on: ubuntu-latest
-    if: github.repository == 'galaxiajs/pulsar'
+    if: github.repository == 'galaxiajs/api-kit'
     permissions:
       issues: write
     steps:

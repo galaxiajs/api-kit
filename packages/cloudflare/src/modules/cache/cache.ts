@@ -87,7 +87,7 @@ export function cached<T extends DataFetcher>(
 			pathRevalidator.register(cacheKey, [cachePath]),
 		]);
 
-		const cache = await caches.open("pulsar:cache");
+		const cache = await caches.open("api-kit:cache");
 		const existing = await cache.match(cacheKey);
 		if (existing) {
 			const parsed: Cacheable = await deserialise(await existing.clone().text());
@@ -130,7 +130,7 @@ export function cached<T extends DataFetcher>(
 
 function createCacheKey(parts: any[]) {
 	const { origin, pathname } = url();
-	const cacheUrl = new URL(`/__pulsar/__cache__${pathname}`, origin);
+	const cacheUrl = new URL(`/__api-kit/__cache__${pathname}`, origin);
 	for (const key of parts) cacheUrl.searchParams.append("key", key);
 
 	return cacheUrl.toString();

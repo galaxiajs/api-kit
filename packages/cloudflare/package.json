@@ -5,10 +5,10 @@
 	"description": "Utilities to make working with Cloudflare workers easier",
 	"author": "Ernest Nkansah-Badu <ernestjbadu@outlook.com> (https://github.com/Ernxst)",
 	"license": "MIT",
-	"homepage": "https://github.com/galaxiajs/pulsar",
+	"homepage": "https://github.com/galaxiajs/api-kit",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/galaxiajs/pulsar.git",
+		"url": "https://github.com/galaxiajs/api-kit.git",
 		"directory": "packages/cloudflare"
 	},
 	"main": "./dist/index.js",
@@ -52,7 +52,7 @@
 	},
 	"workspaces": ["examples/**/*"],
 	"keywords": [
-		"pulsar",
+		"api-kit",
 		"web",
 		"app",
 		"http",

@@ -42,7 +42,7 @@ export class GitHub extends GithubAuth implements BaseProvider<GithubAuth> {
 			Accept: "application/vnd.github+json",
 			Authorization: `Bearer ${accessToken}`,
 			"X-GitHub-Api-Version": "2022-11-28",
-			"User-Agent": "pulsar-app",
+			"User-Agent": "api-kit-app",
 		};
 
 		const [userResponse, emailsResponse] = await Promise.all([

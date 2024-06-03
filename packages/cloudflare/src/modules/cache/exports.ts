@@ -1,7 +1,7 @@
 /**
  * @module
  *
- * Pulsar - Web Framework built on Web Standards
+ * Api-Kit - Web Framework built on Web Standards
  *
  * @example
  * ```ts
@@ -23,8 +23,8 @@ export {
 	cache,
 	cached,
 } from "./cache";
-export { revalidateTag } from "./tag";
 export { revalidatePath } from "./path";
+export { revalidateTag } from "./tag";
 export type {
 	CacheHeaderParams,
 	CacheOptions,

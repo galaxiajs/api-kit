@@ -1,18 +1,18 @@
 version: '3'
 
 services:
-  pulsar:
+  api-kit:
     build: .
-    container_name: pulsar
+    container_name: api-kit
     volumes:
-      - ../:/pulsar
+      - ../:/api-kit
     networks:
-      - pulsar
+      - api-kit
     command: bash
     stdin_open: true
     tty: true
     restart: 'no'
 
 networks:
-  pulsar:
+  api-kit:
     driver: bridge

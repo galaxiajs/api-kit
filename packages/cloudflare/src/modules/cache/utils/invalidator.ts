@@ -51,13 +51,13 @@ interface Info {
 
 export function createInvalidator(type: InvalidatorType): Invalidator {
 	function useCache() {
-		return trackedCache(`pulsar:${type}`);
+		return trackedCache(`api-kit:${type}`);
 	}
 
 	function createCacheKey(tag: string): CacheKey {
 		// It is already a cache key
-		if (tag.includes(`/__pulsar/__${type}`)) return tag as CacheKey;
-		const cacheUrl = new URL(`/__pulsar/__${type}${tag}`, url().origin);
+		if (tag.includes(`/__api-kit/__${type}`)) return tag as CacheKey;
+		const cacheUrl = new URL(`/__api-kit/__${type}${tag}`, url().origin);
 		return cacheUrl.toString() as CacheKey;
 	}
 

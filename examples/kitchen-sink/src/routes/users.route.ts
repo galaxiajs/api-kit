@@ -128,7 +128,7 @@ async function uploadAvatar(file: File, userId: string) {
 	const now = new Date().getTime();
 	const key = `avatars/${userId}/${now}_${file.name}`;
 	await Bucket.put(key, file);
-	const url = `https://pulsar-dev.r2.dev/${key}`;
+	const url = `https://api-kit-dev.r2.dev/${key}`;
 
 	sentry.addBreadcrumb({
 		category: "users",

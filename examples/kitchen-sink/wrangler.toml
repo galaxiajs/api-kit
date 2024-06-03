@@ -1,9 +1,9 @@
-name = "pulsar-dev"
+name = "api-kit-dev"
 main = "dist/worker.js"
 compatibility_date = "2024-05-04"
 compatibility_flags = ["nodejs_compat"] # Required!
 
-r2_buckets = [{ binding = "Bucket", bucket_name = "pulsar-dev" }]
+r2_buckets = [{ binding = "Bucket", bucket_name = "api-kit-dev" }]
 
 [build]
 command = "bun run build"

@@ -1,7 +1,7 @@
 {
-	"name": "Pulsar Dev",
+	"name": "Api-Kit Dev",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"mounts": ["source=pulsar-bashhistory,target=/commandhistory,type=volume"]
+	"mounts": ["source=api-kit-bashhistory,target=/commandhistory,type=volume"]
 }
