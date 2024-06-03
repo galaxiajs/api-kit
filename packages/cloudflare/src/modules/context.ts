@@ -34,9 +34,7 @@ export function createContext(
 	cfEnv: Env,
 	ctx: ExecutionContext
 ): Readonly<HandlerContext> {
-	const reqHeaders = new Headers();
-	const reqUrl = new URL(req.url);
-
+	const responseHeaders = new Headers();
 	const services: Record<string, any> = {};
 	const secrets: Record<string, unknown> = {};
 
@@ -61,7 +59,7 @@ export function createContext(
 			return ctx;
 		},
 		get url() {
-			return reqUrl;
+			return new URL(req.url);
 		},
 		get bindings() {
 			return Object.freeze(services);
@@ -75,7 +73,7 @@ export function createContext(
 					resStatus = statusCode;
 				},
 				get headers() {
-					return reqHeaders as unknown as CfHeaders;
+					return responseHeaders as unknown as CfHeaders;
 				},
 			});
 		},
