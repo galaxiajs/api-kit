@@ -7,7 +7,7 @@ const EXTERNAL = new Set([
 	"cloudflare:workers",
 ]);
 
-export default function pulsar(): Plugin {
+export default function cloudflare(): Plugin {
 	return {
 		name: "esbuild-plugin-api-kit",
 		async setup(build) {

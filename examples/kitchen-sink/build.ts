@@ -1,8 +1,8 @@
-import pulsar from "@galaxiajs/cloudflare-kit/esbuild";
+import cloudflare from "@galaxiajs/cloudflare-kit/esbuild";
 import { build } from "esbuild";
 
 await build({
 	entryPoints: { worker: "./src/worker.ts" },
-	plugins: [pulsar()],
+	plugins: [cloudflare()],
 	logLevel: "info",
 });
