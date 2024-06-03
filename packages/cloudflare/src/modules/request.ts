@@ -1,22 +1,27 @@
-import type { Headers as CfHeaders, Request } from "@cloudflare/workers-types";
+import type {
+	Headers as CfHeaders,
+	Request as CfRequest,
+} from "@cloudflare/workers-types";
 import { useHandlerContext } from "./context";
 
 /**
+ * @template {Request | CfRequest} T Optional cast if you need the standard `Request` type
  * @returns {import("@cloudflare/workers-types").Request} A clone of
  * the current {@linkcode Request}
  */
-export function request(): Request {
+export function request<T extends Request | CfRequest = CfRequest>(): T {
 	const { request } = useHandlerContext();
-	return request.clone();
+	return request.clone() as unknown as T;
 }
 
 /**
  * Allows you to read the HTTP incoming request headers.
+ * @template {Headers | CfHeaders} T Optional cast if you need the standard `Headers` type
  * @returns {import("@cloudflare/workers-types").Headers}
  */
-export function headers(): CfHeaders {
+export function headers<T extends Headers | CfHeaders = CfHeaders>(): T {
 	const { headers } = request();
-	return headers;
+	return headers as unknown as T;
 }
 
 /**
