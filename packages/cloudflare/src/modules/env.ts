@@ -1,4 +1,5 @@
 import type { WorkerEntrypoint } from "cloudflare:workers";
+import type { Service } from "@cloudflare/workers-types";
 import type { Constructor, Resource } from "src/types";
 import { LocalsContext, useHandlerContext } from "./context";
 
