@@ -34,7 +34,9 @@ jobs:
 
       - name: 📤 Install Bun
         uses: oven-sh/setup-bun@v1
-
+        with:
+          bun-version: latest
+          
       - name: 📤 Install dependencies
         run: bun install
 

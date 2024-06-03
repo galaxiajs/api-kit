@@ -8,7 +8,7 @@ on:
 jobs:
   triage:
     runs-on: ubuntu-latest
-    if: ${{ github.repository_owner == 'Ernxst' }}
+    if: ${{ github.repository_owner == 'galaxiajs' }}
     steps:
       - uses: actions/labeler@v4
         with:
