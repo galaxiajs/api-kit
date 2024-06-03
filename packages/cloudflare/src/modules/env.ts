@@ -1,7 +1,7 @@
 import type { WorkerEntrypoint } from "cloudflare:workers";
 import type { Service } from "@cloudflare/workers-types";
 import type { Constructor, Resource } from "src/types";
-import { LocalsContext, useHandlerContext } from "./context";
+import { LocalsContext, useHandlerContext } from "./context/context";
 
 /** Injected at runtime using `inject()` */
 export interface Locals {}

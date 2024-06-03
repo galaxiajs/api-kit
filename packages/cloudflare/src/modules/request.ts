@@ -2,7 +2,7 @@ import type {
 	Headers as CfHeaders,
 	Request as CfRequest,
 } from "@cloudflare/workers-types";
-import { useHandlerContext } from "./context";
+import { useHandlerContext } from "./context/context";
 
 /**
  * @template {Request | CfRequest} T Optional cast if you need the standard `Request` type

@@ -23,6 +23,10 @@
 			"types": "./dist/cache/index.d.ts",
 			"default": "./dist/cache/index.js"
 		},
+		"./context": {
+			"types": "./dist/context/index.d.ts",
+			"default": "./dist/context/index.js"
+		},
 		"./cookies": {
 			"types": "./dist/cookies/index.d.ts",
 			"default": "./dist/cookies/index.js"
@@ -42,6 +46,7 @@
 			".": ["./dist/index"],
 			"esbuild": ["./dist/esbuild/index"],
 			"cache": ["./dist/cache/index"],
+			"context": ["./dist/context/index"],
 			"cookies": ["./dist/cookies/index"],
 			"user-agent": ["./dist/user-agent/index"],
 			"types": ["./dist/index"]

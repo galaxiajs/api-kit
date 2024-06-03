@@ -4,6 +4,7 @@ export default defineConfig({
 	entry: {
 		index: "./src/exports.ts",
 		"cache/index": "./src/modules/cache/exports.ts",
+		"context/index": "./src/modules/context/exports.ts",
 		"cookies/index": "./src/modules/cookies/exports.ts",
 		"user-agent/index": "./src/modules/user-agent.ts",
 		"esbuild/index": "./src/plugins/esbuild.ts",

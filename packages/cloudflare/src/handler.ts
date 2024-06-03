@@ -3,10 +3,10 @@ import type { ExportedHandler } from "@cloudflare/workers-types";
 import { createResponse } from "./create-response";
 import {
 	HandlerContext,
+	type IHandlerContext,
 	LocalsContext,
-	createContext,
-	createLocals,
-} from "./modules/context";
+} from "./modules/context/context";
+import { createContext, createLocals } from "./modules/context/utils";
 import type { Env } from "./modules/env";
 import type { ExportedWorker, Handler, MakeAsync, Promisable } from "./types";
 
@@ -67,7 +67,7 @@ export function cloudflare<T extends ExportedWorker<Env>>(handler: T): MakeAsync
 	};
 }
 
-function handleRequest(ctx: HandlerContext, handle: () => Promisable<Response>) {
+function handleRequest(ctx: IHandlerContext, handle: () => Promisable<Response>) {
 	return HandlerContext.run(ctx, async () => {
 		/** Run locals **after** initial request context so `inject` can access it */
 		const injected = await createLocals();

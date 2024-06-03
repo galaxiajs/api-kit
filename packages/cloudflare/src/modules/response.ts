@@ -1,5 +1,5 @@
 import type { Response as CfResponse } from "@cloudflare/workers-types";
-import { useHandlerContext } from "./context";
+import { useHandlerContext } from "./context/context";
 
 export interface ResponseContext extends Pick<CfResponse, "status" | "headers"> {}
 

@@ -1,39 +1,17 @@
-import { AsyncLocalStorage } from "node:async_hooks";
 import type {
 	Headers as CfHeaders,
 	ExecutionContext,
 	Request,
 } from "@cloudflare/workers-types";
 import { initialisers } from "src/inject";
-import type { $Bindings, $Secrets, Env, Locals } from "./env";
-import type { ResponseContext } from "./response";
-
-export interface HandlerContext {
-	readonly request: Request;
-	readonly env: $Secrets;
-	readonly executionContext: ExecutionContext;
-	readonly url: URL;
-	readonly bindings: $Bindings;
-	readonly response: ResponseContext;
-}
-
-export const HandlerContext = new AsyncLocalStorage<HandlerContext>();
-export const LocalsContext = new AsyncLocalStorage<Locals>();
-
-export function useHandlerContext(): HandlerContext {
-	const ctx = HandlerContext.getStore();
-	if (!ctx)
-		throw new Error(
-			"Could not find handler context. Are you calling this at the module level?"
-		);
-	return ctx;
-}
+import type { $Locals, Env, Locals } from "../env";
+import { HandlerContext, type IHandlerContext, LocalsContext } from "./context";
 
 export function createContext(
 	req: Request,
 	cfEnv: Env,
 	ctx: ExecutionContext
-): Readonly<HandlerContext> {
+): Readonly<IHandlerContext> {
 	const responseHeaders = new Headers();
 	const services: Record<string, any> = {};
 	const secrets: Record<string, unknown> = {};
@@ -48,7 +26,7 @@ export function createContext(
 
 	let resStatus = 200;
 
-	return Object.freeze<HandlerContext>({
+	return Object.freeze<IHandlerContext>({
 		get request() {
 			return req;
 		},
@@ -80,8 +58,16 @@ export function createContext(
 	});
 }
 
-export async function createLocals() {
+export async function createLocals(): Promise<$Locals> {
 	const all = await Promise.all(initialisers.map((cb) => cb()));
 	const injected = Object.assign({}, ...all);
-	return injected as Locals;
+	return injected;
+}
+
+export function withContext<T>(ctx: IHandlerContext, cb: () => T): T {
+	return HandlerContext.run(ctx, cb);
+}
+
+export function withLocals<T>(ctx: Locals, cb: () => T): T {
+	return LocalsContext.run(ctx, cb);
 }

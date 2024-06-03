@@ -1,5 +1,5 @@
 import type { ExecutionContext } from "@cloudflare/workers-types";
-import { useHandlerContext } from "./context";
+import { useHandlerContext } from "./context/context";
 
 /**
  * @returns {import("@cloudflare/workers-types").ExecutionContext} The current {@linkcode ExecutionContext}
