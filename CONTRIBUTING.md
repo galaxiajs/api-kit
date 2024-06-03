@@ -127,8 +127,8 @@ bunx changeset
 
 This project has a simple structure,
 
-- [`infra/`](/infra/) - Cloud resources which may be referenced in the apps
-- [`packages/`](/packages/) - Code
+- [`examples/`](/examples/) - Apps showing example usage of the library
+- [`packages/`](/packages/) - Library code
 
 ## Releases
 
@@ -137,6 +137,22 @@ _Note: Only [core maintainers (L3+)](https://github.com/galaxiajs/api-kit/blob/m
 The repo is set up with automatic releases, using the changeset GitHub action & bot.
 
 To release a new version of `api-kit`, find the `Version Packages` PR, read it over, and merge it.
+
+### Changesets
+
+[Changesets](https://github.com/changesets/changesets) is a tool that helps us keep a changelog for all the packages in the monorepo and aggregate them into release notes.
+
+To add a changeset:
+
+1. **Run the command** `bunx changeset` in your terminal
+2. **Select packages** affected by your change; we have a dedicated package for the docs.
+3. **Classify the change** as major, minor, or patch for each selected package.
+4. **Write the changelog** as detailing WHAT the change is, WHY it was made, and HOW it affects the users.
+5. **Commit the changeset file** to your Git branch so that it appears in your PR.
+
+Make an effort to write the changelog well, because our users see this in the release notes. Provide enough detail to be clear, but keep things as concise as possible. If migration steps are required, detail them here.
+
+A detailed guide on adding changesets can be [found here](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md).
 
 ### Releasing PR preview snapshots
 
