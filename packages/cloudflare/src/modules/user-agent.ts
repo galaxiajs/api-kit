@@ -8,7 +8,8 @@ export type DeviceType =
 	| "smarttv"
 	| "wearable"
 	| "embedded"
-	| "desktop";
+	| "desktop"
+	| ({} & string);
 
 export type Architecture =
 	| "68k"
@@ -26,7 +27,8 @@ export type Architecture =
 	| "pa-risc"
 	| "ppc"
 	| "sparc"
-	| "sparc64";
+	| "sparc64"
+	| ({} & string);
 
 /**
  * An object containing information about the device used in the request.
@@ -146,7 +148,6 @@ export function isBot(input: string): boolean {
  */
 export function userAgent(): UserAgent {
 	const ua = headers().get("user-agent") || undefined;
-	// @ts-expect-error
 	return {
 		...parseua(ua),
 		isBot: ua === undefined ? false : isBot(ua),
