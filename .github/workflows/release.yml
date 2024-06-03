@@ -6,9 +6,7 @@ on:
       - main
       - next
 
-defaults:
-  run:
-    shell: bash
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
    TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -47,12 +45,9 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: bun run version
-          publish: bunx changeset publish
+          publish: bun run release
           commit: 'chore(ci): release'
           title: 'chore(ci): release'
         env:
-          # Needs access to push to main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Needs access to publish to npm
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

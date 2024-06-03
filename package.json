@@ -1,6 +1,6 @@
 {
 	"name": "root",
-	"version": "0.0.1",
+	"version": "0.0.0",
 	"private": true,
 	"type": "module",
 	"workspaces": ["packages/**/*", "examples/**/*"],
@@ -19,9 +19,7 @@
 		"test:watch": "turbo run test:watch",
 		"coverage": "turbo run coverage",
 		"----------------------------------------------------------------------------------": "",
-		"prepublishOnly": "bun run build",
-		"release": "bun run build && changeset publish",
-		"version": "changeset version && bun install && bun run format"
+		"release": "changeset publish"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.7.3",
