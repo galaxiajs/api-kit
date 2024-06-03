@@ -1,15 +1,14 @@
 import type { WorkerEntrypoint } from "cloudflare:workers";
-import type {
-	Headers as CfHeaders,
-	ExecutionContext,
-	ExportedHandler,
-	Request,
-} from "@cloudflare/workers-types";
+import type { ExportedHandler } from "@cloudflare/workers-types";
 import { createResponse } from "./create-response";
-import { initialisers } from "./inject";
-import { HandlerContext, LocalsContext } from "./modules/context";
+import {
+	HandlerContext,
+	LocalsContext,
+	createContext,
+	createLocals,
+} from "./modules/context";
 import type { Env } from "./modules/env";
-import type { ExportedWorker, Handler, MakeAsync, Promisable, Resource } from "./types";
+import type { ExportedWorker, Handler, MakeAsync, Promisable } from "./types";
 
 /**
  * @template {Handler<Env>} T
@@ -70,10 +69,8 @@ export function cloudflare<T extends ExportedWorker<Env>>(handler: T): MakeAsync
 
 function handleRequest(ctx: HandlerContext, handle: () => Promisable<Response>) {
 	return HandlerContext.run(ctx, async () => {
-		const all = await Promise.all(initialisers.map((cb) => cb()));
-		const injected = Object.assign({}, ...all);
-
 		/** Run locals **after** initial request context so `inject` can access it */
+		const injected = await createLocals();
 		return await LocalsContext.run(injected, async () => {
 			const result = await handle();
 			if (result instanceof Response) {
@@ -99,54 +96,5 @@ function handleRequest(ctx: HandlerContext, handle: () => Promisable<Response>) 
 				headers: ctx.response.headers as unknown as Headers,
 			});
 		});
-	});
-}
-
-function createContext(req: Request, cfEnv: Env, ctx: ExecutionContext): HandlerContext {
-	const reqHeaders = new Headers();
-	const reqUrl = new URL(req.url);
-
-	const services: Record<string, Resource> = {};
-	const secrets: Record<string, unknown> = {};
-
-	for (const [key, value] of Object.entries(cfEnv)) {
-		if (typeof value === "object" || typeof value === "function") {
-			services[key] = value;
-		} else {
-			secrets[key] = value;
-		}
-	}
-
-	let resStatus = 200;
-
-	return Object.freeze<HandlerContext>({
-		get request() {
-			return req;
-		},
-		get env() {
-			return Object.freeze(secrets);
-		},
-		get executionContext() {
-			return ctx;
-		},
-		get url() {
-			return reqUrl;
-		},
-		get bindings() {
-			return Object.freeze(services);
-		},
-		get response() {
-			return Object.freeze({
-				get status() {
-					return resStatus;
-				},
-				set status(statusCode: number) {
-					resStatus = statusCode;
-				},
-				get headers() {
-					return reqHeaders as unknown as CfHeaders;
-				},
-			});
-		},
 	});
 }
