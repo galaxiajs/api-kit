@@ -26,7 +26,7 @@ export type $Locals = {
 	[K in keyof Locals as Locals[K] extends Resource ? never : K]: Locals[K];
 };
 
-export type Env = Bindings & Secrets;
+export interface Env extends Bindings, Secrets {}
 
 /**
  * @returns {$Secrets} The current {@linkcode Secrets} object
