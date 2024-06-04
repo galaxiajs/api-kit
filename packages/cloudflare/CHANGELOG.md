@@ -1,5 +1,11 @@
 # @galaxiajs/cloudflare-kit
 
+## 0.0.3
+
+### Patch Changes
+
+- 8199735: Add utility to run request handler manually
+
 ## 0.0.2
 
 ### Patch Changes
