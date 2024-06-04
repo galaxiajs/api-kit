@@ -9,6 +9,9 @@ import type { Promisable } from "src/types";
 import type { $Locals, Env, Locals } from "../env";
 import { HandlerContext, type IHandlerContext, LocalsContext } from "./context";
 
+/**
+ * Manually create the internal context use by Api Kit. Useful for unit testing.
+ */
 export function createContext(
 	req: CfRequest | Request,
 	cfEnv: Env,
@@ -60,16 +63,27 @@ export function createContext(
 	});
 }
 
+/**
+ * Manually create the `Locals` object. Useful for unit testing.
+ */
 export async function createLocals(): Promise<$Locals> {
 	const all = await Promise.all(initialisers.map((cb) => cb()));
 	const injected = Object.assign({}, ...all);
 	return injected;
 }
 
+/**
+ * Run a callback in the context so the utility methods are available, returning
+ * the returned value from the callback. Useful for unit testing.
+ */
 export function withContext<T>(ctx: IHandlerContext, cb: () => T): T {
 	return HandlerContext.run(ctx, cb);
 }
 
+/**
+ * Run a callback in the context so the `locals` method is available,
+ * returning the returned value from the callback. Useful for unit testing.
+ */
 export function withLocals<T>(ctx: Locals, cb: () => T): T {
 	return LocalsContext.run(ctx, cb);
 }
@@ -80,10 +94,14 @@ export interface WithRequestHandlerOptions {
 	env: Env;
 }
 
+/**
+ * Run a callback in the context so the utility methods are available, returning
+ * the returned value from the callback. Useful for unit testing.
+ */
 export function withRequestHandler(
 	{ request, context, env }: WithRequestHandlerOptions,
 	cb: () => Promisable<Response>
-) {
+): Promise<Response> {
 	const ctx = createContext(request, env, context);
 	return handleRequest(ctx, cb);
 }
