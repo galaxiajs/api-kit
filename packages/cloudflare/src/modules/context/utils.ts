@@ -1,14 +1,16 @@
 import type {
 	Headers as CfHeaders,
+	Request as CfRequest,
 	ExecutionContext,
-	Request,
 } from "@cloudflare/workers-types";
+import { handleRequest } from "src/handler";
 import { initialisers } from "src/inject";
+import type { Promisable } from "src/types";
 import type { $Locals, Env, Locals } from "../env";
 import { HandlerContext, type IHandlerContext, LocalsContext } from "./context";
 
 export function createContext(
-	req: Request,
+	req: CfRequest | Request,
 	cfEnv: Env,
 	ctx: ExecutionContext
 ): Readonly<IHandlerContext> {
@@ -28,7 +30,7 @@ export function createContext(
 
 	return Object.freeze<IHandlerContext>({
 		get request() {
-			return req;
+			return req as any;
 		},
 		get env() {
 			return Object.freeze(secrets);
@@ -70,4 +72,18 @@ export function withContext<T>(ctx: IHandlerContext, cb: () => T): T {
 
 export function withLocals<T>(ctx: Locals, cb: () => T): T {
 	return LocalsContext.run(ctx, cb);
+}
+
+export interface WithRequestHandlerOptions {
+	request: Request | CfRequest;
+	context: ExecutionContext;
+	env: Env;
+}
+
+export function withRequestHandler(
+	{ request, context, env }: WithRequestHandlerOptions,
+	cb: () => Promisable<Response>
+) {
+	const ctx = createContext(request, env, context);
+	return handleRequest(ctx, cb);
 }

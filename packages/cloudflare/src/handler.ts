@@ -67,7 +67,7 @@ export function cloudflare<T extends ExportedWorker<Env>>(handler: T): MakeAsync
 	};
 }
 
-function handleRequest(ctx: IHandlerContext, handle: () => Promisable<Response>) {
+export function handleRequest(ctx: IHandlerContext, handle: () => Promisable<Response>) {
 	return HandlerContext.run(ctx, async () => {
 		/** Run locals **after** initial request context so `inject` can access it */
 		const injected = await createLocals();

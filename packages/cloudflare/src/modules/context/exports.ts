@@ -4,4 +4,6 @@ export {
 	createLocals,
 	withContext,
 	withLocals,
+	withRequestHandler,
+	type WithRequestHandlerOptions,
 } from "./utils";
