@@ -9,6 +9,8 @@ import type { Promisable } from "src/types";
 import type { $Locals, Env, Locals } from "../env";
 import { HandlerContext, type IHandlerContext, LocalsContext } from "./context";
 
+export { withinContext } from "./context";
+
 /**
  * Manually create the internal context use by Api Kit. Useful for unit testing.
  */

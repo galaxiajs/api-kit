@@ -23,3 +23,12 @@ export function useHandlerContext(): IHandlerContext {
 		);
 	return ctx;
 }
+
+/**
+ * Helper indicating when it is safe to use the utility methods
+ * @returns {boolean} Returns true if the context is available
+ */
+export function withinContext(): boolean {
+	const ctx = HandlerContext.getStore();
+	return !ctx;
+}
