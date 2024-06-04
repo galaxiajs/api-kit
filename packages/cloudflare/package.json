@@ -40,41 +40,22 @@
 			"default": "./dist/esbuild/index.js"
 		}
 	},
-	"files": [
-		"dist",
-		"package.json"
-	],
+	"files": ["dist", "package.json"],
 	"typesVersions": {
 		"*": {
-			".": [
-				"./dist/index"
-			],
-			"esbuild": [
-				"./dist/esbuild/index"
-			],
-			"cache": [
-				"./dist/cache/index"
-			],
-			"context": [
-				"./dist/context/index"
-			],
-			"cookies": [
-				"./dist/cookies/index"
-			],
-			"user-agent": [
-				"./dist/user-agent/index"
-			],
-			"types": [
-				"./dist/index"
-			]
+			".": ["./dist/index"],
+			"esbuild": ["./dist/esbuild/index"],
+			"cache": ["./dist/cache/index"],
+			"context": ["./dist/context/index"],
+			"cookies": ["./dist/cookies/index"],
+			"user-agent": ["./dist/user-agent/index"],
+			"types": ["./dist/index"]
 		}
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org"
 	},
-	"workspaces": [
-		"examples/**/*"
-	],
+	"workspaces": ["examples/**/*"],
 	"keywords": [
 		"api-kit",
 		"web",
