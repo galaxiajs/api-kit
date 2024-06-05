@@ -30,5 +30,5 @@ export function useHandlerContext(): IHandlerContext {
  */
 export function withinContext(): boolean {
 	const ctx = HandlerContext.getStore();
-	return !ctx;
+	return !!ctx;
 }
