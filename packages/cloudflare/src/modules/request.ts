@@ -6,12 +6,11 @@ import { useHandlerContext } from "./context/context";
 
 /**
  * @template {Request | CfRequest} T Optional cast if you need the standard `Request` type
- * @returns {import("@cloudflare/workers-types").Request} A clone of
- * the current {@linkcode Request}
+ * @returns {import("@cloudflare/workers-types").Request} The current {@linkcode Request}
  */
 export function request<T extends Request | CfRequest = CfRequest>(): T {
 	const { request } = useHandlerContext();
-	return request.clone() as unknown as T;
+	return request as unknown as T;
 }
 
 /**
