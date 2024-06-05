@@ -7,3 +7,4 @@ export {
 	withRequestHandler,
 	type WithRequestHandlerOptions,
 } from "./utils";
+export { withinContext } from "./context";
