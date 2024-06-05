@@ -1,5 +1,11 @@
 # @galaxiajs/cloudflare-kit
 
+## 0.0.8
+
+### Patch Changes
+
+- 770bb4a: (breaking): do not clone the request in case it is currently being read
+
 ## 0.0.7
 
 ### Patch Changes
