@@ -1,5 +1,11 @@
 # @galaxiajs/cloudflare-kit
 
+## 0.0.4
+
+### Patch Changes
+
+- dc992ab: Add cookie utility methods
+
 ## 0.0.3
 
 ### Patch Changes
