@@ -1,5 +1,11 @@
 # @galaxiajs/cloudflare-kit
 
+## 0.0.5
+
+### Patch Changes
+
+- 721eb8f: fix: add missing exports
+
 ## 0.0.4
 
 ### Patch Changes
