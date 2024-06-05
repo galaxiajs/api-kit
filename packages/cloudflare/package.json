@@ -1,7 +1,7 @@
 {
 	"name": "@galaxiajs/cloudflare-kit",
 	"type": "module",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Utilities to make working with Cloudflare workers easier",
 	"author": "Ernest Nkansah-Badu <ernestjbadu@outlook.com> (https://github.com/Ernxst)",
 	"license": "MIT",
@@ -40,22 +40,41 @@
 			"default": "./dist/esbuild/index.js"
 		}
 	},
-	"files": ["dist", "package.json"],
+	"files": [
+		"dist",
+		"package.json"
+	],
 	"typesVersions": {
 		"*": {
-			".": ["./dist/index"],
-			"esbuild": ["./dist/esbuild/index"],
-			"cache": ["./dist/cache/index"],
-			"context": ["./dist/context/index"],
-			"cookies": ["./dist/cookies/index"],
-			"user-agent": ["./dist/user-agent/index"],
-			"types": ["./dist/index"]
+			".": [
+				"./dist/index"
+			],
+			"esbuild": [
+				"./dist/esbuild/index"
+			],
+			"cache": [
+				"./dist/cache/index"
+			],
+			"context": [
+				"./dist/context/index"
+			],
+			"cookies": [
+				"./dist/cookies/index"
+			],
+			"user-agent": [
+				"./dist/user-agent/index"
+			],
+			"types": [
+				"./dist/index"
+			]
 		}
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org"
 	},
-	"workspaces": ["examples/**/*"],
+	"workspaces": [
+		"examples/**/*"
+	],
 	"keywords": [
 		"api-kit",
 		"web",
