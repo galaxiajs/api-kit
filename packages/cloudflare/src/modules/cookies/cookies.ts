@@ -13,7 +13,7 @@ import type { CookieStore } from "./types";
 export function cookies(): CookieStore {
 	const headersList = headers();
 	const cookieHeader = headersList.get("Cookie") ?? "";
-	const cookieValuesByName = readCookieHeader(cookieHeader.replace(/;$/, ""));
+	const cookieValuesByName = parseCookieHeader(cookieHeader.replace(/;$/, ""));
 
 	const cookieMap = new Map<string, Cookie>();
 	const responseHeaders = response().headers;
@@ -26,7 +26,7 @@ export function cookies(): CookieStore {
 
 	function updateResponseCookiesFromMap() {
 		const cookieHeader = responseHeaders.get("Set-Cookie") ?? "";
-		const responseCookies = parseResponseCookies(cookieHeader);
+		const responseCookies = parseSetCookieHeader(cookieHeader);
 
 		/** Add any extra set-cookie headers that were added during the request by the consumer */
 		responseCookies.forEach((cookie, name) => {
@@ -36,7 +36,7 @@ export function cookies(): CookieStore {
 		responseHeaders.delete("Set-Cookie");
 
 		for (const [name, cookie] of cookieMap.entries()) {
-			if (isDeleted(cookie)) cookieMap.delete(name);
+			if (isCookieDeleted(cookie)) cookieMap.delete(name);
 			responseHeaders.append("Set-Cookie", cookie.serialize());
 		}
 	}
@@ -108,16 +108,16 @@ export function cookies(): CookieStore {
 	});
 }
 
-function isDeleted({ attributes }: Cookie) {
+export function isCookieDeleted({ attributes }: Cookie): boolean {
 	return (
 		attributes.maxAge === 0 ||
-		(attributes.expires && !isWithinExpirationDate(attributes.expires))
+		(!!attributes.expires && !isWithinExpirationDate(attributes.expires))
 	);
 }
 
-function readCookieHeader(cookie: string) {
+export function parseCookieHeader(cookieHeader: string): Map<string, string> {
 	try {
-		return parseCookies(cookie.trim());
+		return parseCookies(cookieHeader.trim());
 	} catch (error) {
 		if (error instanceof URIError) {
 			return new Map<string, string>();
@@ -128,8 +128,8 @@ function readCookieHeader(cookie: string) {
 	}
 }
 
-function parseResponseCookies(header: string): Map<string, Cookie> {
-	const split = parseSetCookie.splitCookiesString(header);
+export function parseSetCookieHeader(header: string): Map<string, Cookie> {
+	const split = parseSetCookie.splitCookiesString(header.trim());
 	const parsedCookies = parseSetCookie(split);
 	const cookies = new Map(
 		parsedCookies.map(({ name, value, sameSite, ...attributes }) => {
