@@ -1,5 +1,12 @@
 # @examples/kitchen-sink
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [721eb8f]
+  - @galaxiajs/cloudflare-kit@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
