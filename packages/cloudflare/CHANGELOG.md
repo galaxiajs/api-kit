@@ -1,5 +1,11 @@
 # @galaxiajs/cloudflare-kit
 
+## 0.0.6
+
+### Patch Changes
+
+- e6972f5: Export withinContext utility
+
 ## 0.0.5
 
 ### Patch Changes
