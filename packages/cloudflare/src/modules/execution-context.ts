@@ -10,7 +10,11 @@ export function executionContext(): ExecutionContext {
 }
 
 /**
- * Shorthand for {@linkcode ExecutionContext.waitUntil}
+ * Shorthand for {@linkcode ExecutionContext.waitUntil}. Takes a promise as an
+ * argument, and extends the lifetime of processing until the promise settles.
+ * This is useful for performing work in the background without affecting
+ * response times
+ *
  * @param {Promise<any>} promise
  * @returns {void}
  */
