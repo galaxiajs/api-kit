@@ -1,4 +1,4 @@
-import { createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
+import { SELF, createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
 import { cloudflare } from "src/handler";
 import { inject } from "src/inject";
 import { cache, cached } from "src/modules/cache/cache";
@@ -16,6 +16,7 @@ import {
 } from "src/modules/request";
 import { response, status } from "src/modules/response";
 import { describe, expect, test, vi } from "vitest";
+import * as users from "./fixtures/users";
 
 describe("context", () => {
 	test("should throw error trying to access request at the module level", async () => {
@@ -159,5 +160,31 @@ describe("context", () => {
 
 		expect(waitUntilSpy).toHaveBeenCalledTimes(2);
 		expect(cacheSpy).toHaveBeenCalledOnce();
+	});
+
+	test("context methods should be available on worker entrypoint", async () => {
+		const sendEmailSpy = vi.spyOn(users, "sendWelcomeEmail");
+
+		const req = new Request("https://example.com/users/123?sort=asc", {
+			headers: {
+				"X-Request-Id": "some-req-id",
+				"cf-connecting-ip": "some-ip",
+			},
+		});
+
+		const res = await SELF.fetch(req.clone());
+
+		expect(res.status).toEqual(201);
+		expect(res.headers.get("X-Foo")).toEqual("Bar");
+		expect(res.headers.get("Set-Cookie")).toEqual("session=123");
+		expect(res.headers.get("Content-Type")).toEqual("application/json;charset=utf-8");
+		expect(res.headers.get("Cache-Control")).toEqual("max-age=604800");
+		await expect(res.json()).resolves.toEqual({ id: "123" });
+
+		expect(sendEmailSpy).toHaveBeenCalledOnce();
+
+		await SELF.fetch(req.clone());
+
+		expect(sendEmailSpy).toHaveBeenCalledTimes(2);
 	});
 });

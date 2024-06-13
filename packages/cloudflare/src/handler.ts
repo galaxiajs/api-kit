@@ -1,5 +1,5 @@
 import type { WorkerEntrypoint } from "cloudflare:workers";
-import type { ExportedHandler } from "@cloudflare/workers-types";
+import type { ExecutionContext, ExportedHandler } from "@cloudflare/workers-types";
 import { createResponse } from "./create-response";
 import {
 	HandlerContext,
@@ -42,12 +42,16 @@ export function cloudflare<T extends ExportedWorker<Env>>(handler: T): MakeAsync
 		const Cls = handler as typeof WorkerEntrypoint<Env>;
 		// @ts-expect-error
 		return class extends Cls {
-			fetch(req: any) {
-				return handleRequest(
-					createContext(req, this.env, this.ctx),
-					// biome-ignore lint/style/noNonNullAssertion: <explanation>
-					() => super.fetch?.(req)!
-				);
+			constructor(ctx: ExecutionContext, env: Env) {
+				super(ctx, env);
+
+				// biome-ignore lint/style/noNonNullAssertion: <explanation>
+				const fetchFn = this.fetch!;
+
+				this.fetch = async function handle(request) {
+					const ctx = createContext(request, this.env, this.ctx);
+					return await handleRequest(ctx, () => fetchFn.bind(this)(request));
+				};
 			}
 		};
 	}

@@ -19,10 +19,13 @@ export default defineWorkersConfig({
 		poolOptions: {
 			workers: {
 				singleWorker: true,
+				main: "./src/__test__/fixtures/handler.ts",
 				miniflare: {
 					name: "main",
 					compatibilityDate: COMPATIBILITY_DATE,
 					compatibilityFlags: COMPATIBILITY_FLAGS,
+					r2Buckets: ["TestBucket"],
+					bindings: { DatabaseUrl: "some-url" },
 				},
 			},
 		},
