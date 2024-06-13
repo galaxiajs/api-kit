@@ -1,0 +1,20 @@
+{
+	"name": "@examples/rpc",
+	"type": "module",
+	"version": "0.0.8",
+	"private": true,
+	"scripts": {
+		"--------------------------------------------------------------------------------": "",
+		"dev": "wrangler dev",
+		"build": "bun run build.ts"
+	},
+	"dependencies": {
+		"@galaxiajs/cloudflare-kit": "workspace:*"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240512.0",
+		"esbuild": "^0.21.4",
+		"typescript": "^5.0.0",
+		"wrangler": "^3.57.1"
+	}
+}

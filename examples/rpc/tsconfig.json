@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"lib": ["esnext"],
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"types": ["@cloudflare/workers-types", "@types/node"],
+		"strict": true,
+		"verbatimModuleSyntax": true,
+		"skipLibCheck": true
+	},
+	"include": ["src", "./build.ts"],
+	"exclude": ["./dist", "node_modules"]
+}
