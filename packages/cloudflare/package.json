@@ -38,43 +38,29 @@
 		"./esbuild": {
 			"types": "./dist/esbuild/index.d.ts",
 			"default": "./dist/esbuild/index.js"
+		},
+		"./vitest": {
+			"types": "./dist/vitest/index.d.ts",
+			"default": "./dist/vitest/index.js"
 		}
 	},
-	"files": [
-		"dist",
-		"package.json"
-	],
+	"files": ["dist", "package.json"],
 	"typesVersions": {
 		"*": {
-			".": [
-				"./dist/index"
-			],
-			"esbuild": [
-				"./dist/esbuild/index"
-			],
-			"cache": [
-				"./dist/cache/index"
-			],
-			"context": [
-				"./dist/context/index"
-			],
-			"cookies": [
-				"./dist/cookies/index"
-			],
-			"user-agent": [
-				"./dist/user-agent/index"
-			],
-			"types": [
-				"./dist/index"
-			]
+			".": ["./dist/index"],
+			"esbuild": ["./dist/esbuild/index"],
+			"cache": ["./dist/cache/index"],
+			"context": ["./dist/context/index"],
+			"cookies": ["./dist/cookies/index"],
+			"user-agent": ["./dist/user-agent/index"],
+			"vitest": ["./dist/vitest/index"],
+			"types": ["./dist/index"]
 		}
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org"
 	},
-	"workspaces": [
-		"examples/**/*"
-	],
+	"workspaces": ["examples/**/*"],
 	"keywords": [
 		"api-kit",
 		"web",
@@ -107,10 +93,14 @@
 		"ua-parser-js": "1.0.38"
 	},
 	"peerDependencies": {
-		"@cloudflare/workers-types": "^4.20240405.0"
+		"@cloudflare/workers-types": "^4.20240405.0",
+		"@cloudflare/vitest-pool-workers": "^0.4.0"
 	},
 	"peerDependenciesMeta": {
 		"@cloudflare/workers-types": {
+			"optional": true
+		},
+		"@cloudflare/vitest-pool-workers": {
 			"optional": true
 		}
 	},
