@@ -1,5 +1,11 @@
 # @galaxiajs/cloudflare-kit
 
+## 0.1.0
+
+### Minor Changes
+
+- 1a3fe97: Add vitest helper and improve RPC integration
+
 ## 0.0.8
 
 ### Patch Changes
