@@ -1,5 +1,11 @@
 # @galaxiajs/cloudflare-kit
 
+## 0.1.1
+
+### Patch Changes
+
+- 1ca2619: Add method to execute code after request handling
+
 ## 0.1.0
 
 ### Minor Changes
