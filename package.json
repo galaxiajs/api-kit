@@ -17,7 +17,7 @@
 		"---------------------------------------------------------------------------------": "",
 		"test": "turbo run test",
 		"test:watch": "turbo run test:watch",
-		"coverage": "turbo run coverage",
+		"coverage": "vitest run --coverage",
 		"----------------------------------------------------------------------------------": "",
 		"release": "changeset publish"
 	},
@@ -27,8 +27,10 @@
 		"@changesets/cli": "^2.27.5",
 		"@commitlint/cli": "^19.3.0",
 		"@commitlint/config-conventional": "^19.2.2",
+		"@vitest/coverage-istanbul": "1.5.0",
 		"lefthook": "^1.6.14",
-		"turbo": "^1.13.3"
+		"turbo": "^1.13.3",
+		"vitest": "1.5.0"
 	},
 	"packageManager": "bun@1.10.0",
 	"engines": {

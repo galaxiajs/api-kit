@@ -27,7 +27,7 @@ export {
 	type $Locals as Locals,
 	type $Secrets as Secrets,
 } from "./modules/env";
-export { executionContext, waitUntil } from "./modules/execution-context";
+export { executionContext, waitUntil, after } from "./modules/execution-context";
 export {
 	headers,
 	ip,

@@ -44,44 +44,23 @@
 			"default": "./dist/vitest/index.js"
 		}
 	},
-	"files": [
-		"dist",
-		"package.json"
-	],
+	"files": ["dist", "package.json"],
 	"typesVersions": {
 		"*": {
-			".": [
-				"./dist/index"
-			],
-			"esbuild": [
-				"./dist/esbuild/index"
-			],
-			"cache": [
-				"./dist/cache/index"
-			],
-			"context": [
-				"./dist/context/index"
-			],
-			"cookies": [
-				"./dist/cookies/index"
-			],
-			"user-agent": [
-				"./dist/user-agent/index"
-			],
-			"vitest": [
-				"./dist/vitest/index"
-			],
-			"types": [
-				"./dist/index"
-			]
+			".": ["./dist/index"],
+			"esbuild": ["./dist/esbuild/index"],
+			"cache": ["./dist/cache/index"],
+			"context": ["./dist/context/index"],
+			"cookies": ["./dist/cookies/index"],
+			"user-agent": ["./dist/user-agent/index"],
+			"vitest": ["./dist/vitest/index"],
+			"types": ["./dist/index"]
 		}
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org"
 	},
-	"workspaces": [
-		"examples/**/*"
-	],
+	"workspaces": ["examples/**/*"],
 	"keywords": [
 		"api-kit",
 		"web",
@@ -131,7 +110,6 @@
 		"@types/node": "^20.13.0",
 		"@types/set-cookie-parser": "2.4.7",
 		"@types/ua-parser-js": "0.7.39",
-		"@vitest/coverage-istanbul": "1.5.0",
 		"publint": "^0.2.8",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.5",

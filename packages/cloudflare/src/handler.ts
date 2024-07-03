@@ -8,6 +8,7 @@ import {
 } from "./modules/context/context";
 import { createContext, createLocals } from "./modules/context/utils";
 import type { Env } from "./modules/env";
+import { afters } from "./modules/execution-context";
 import type { ExportedWorker, Handler, MakeAsync, Promisable } from "./types";
 
 /**
@@ -77,12 +78,14 @@ export function handleRequest(ctx: IHandlerContext, handle: () => Promisable<Res
 		const injected = await createLocals();
 		return await LocalsContext.run(injected, async () => {
 			const result = await handle();
+			let response: Response;
+
 			if (result instanceof Response) {
 				for (const [key, value] of result.headers.entries()) {
 					ctx.response.headers.append(key, value);
 				}
 
-				return new Response(result.body, {
+				response = new Response(result.body, {
 					statusText: result.statusText,
 					status: result.status,
 					headers: ctx.response.headers as unknown as Headers,
@@ -93,12 +96,19 @@ export function handleRequest(ctx: IHandlerContext, handle: () => Promisable<Res
 					// @ts-expect-error is a CF only type
 					encodeBody: result.encodeBody,
 				});
+			} else {
+				response = createResponse(result, {
+					status: ctx.response.status,
+					headers: ctx.response.headers as unknown as Headers,
+				});
 			}
 
-			return createResponse(result, {
-				status: ctx.response.status,
-				headers: ctx.response.headers as unknown as Headers,
-			});
+			ctx.executionContext.waitUntil(handleAfter());
+			return response;
 		});
 	});
+}
+
+async function handleAfter() {
+	await Promise.all(afters.map((r) => r()));
 }
