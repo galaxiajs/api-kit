@@ -22,10 +22,10 @@ export {
 	bindings,
 	env,
 	locals,
-	type $Bindings as Bindings,
+	type Bindings,
 	type Env,
-	type $Locals as Locals,
-	type $Secrets as Secrets,
+	type Locals,
+	type Secrets,
 } from "./modules/env";
 export { executionContext, waitUntil, after } from "./modules/execution-context";
 export {
