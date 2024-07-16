@@ -1,5 +1,11 @@
 # @galaxiajs/cloudflare-kit
 
+## 0.1.2
+
+### Patch Changes
+
+- 37ad5b1: Fix module augmentation for typescript versions `>=5.5`
+
 ## 0.1.1
 
 ### Patch Changes
