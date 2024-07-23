@@ -1,5 +1,12 @@
 # @examples/basic
 
+## 0.0.12
+
+### Patch Changes
+
+- Updated dependencies [cf7378c]
+  - @galaxiajs/cloudflare-kit@0.1.3
+
 ## 0.0.11
 
 ### Patch Changes
