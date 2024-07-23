@@ -26,9 +26,10 @@ export type ExportedWorker<T extends object = any> =
  * the function params without losing type inference
  */
 export interface Handler<T extends object = any> {
-	fetch(request: Request, env: T, ctx: ExecutionContext): Promisable<any>;
-	fetch(request: Request, env: T): Promisable<any>;
-	fetch(request: Request): Promisable<any>;
+	fetch:
+		| ((request: Request) => Promisable<any>)
+		| ((request: Request, env: T) => Promisable<any>)
+		| ((request: Request, env: T, ctx: ExecutionContext) => Promisable<any>);
 }
 
 export type Constructor<In extends any[] = any[], Out extends object = any> = new (
